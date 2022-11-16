@@ -19,8 +19,16 @@ Generate csv files from the history files of the browsers:
 On Linux only, for now, but porting to other platforms and browsers
 should be straightforward.
 
-Does not depend on any external package, no need to install:
-just clone and hack.
+Does not depend on any external package, no installation needed,
+just clone and hack:
+
+
+```bash
+git clone https://github.com/giannifer7/barbero.git
+cd barbero
+./history.py > history.csv
+```
+
 
 There are 3 executable scripts that write a csv to the standard output:
 
@@ -81,5 +89,5 @@ The csv fields are:
 If you have any complaint about this less-than-alpha quality software, then "VENITE A BRUCIARMI LA CASA!"
 
 * The project is named after the famous italian historian Alessandro Barbero
-    https://it.wikipedia.org/wiki/Alessandro_Barbero
+    https://en.wikipedia.org/wiki/Alessandro_Barbero
 
