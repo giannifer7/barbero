@@ -91,7 +91,7 @@ def print_history_all_csv(konf: Konf) -> None:
 
 
 def main() -> None:
-    from configuration import Configuration
+    from configuration_di_fede import Configuration
 
     konf = Configuration()
     print_history_all_csv(konf)

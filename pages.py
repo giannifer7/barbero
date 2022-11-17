@@ -30,7 +30,7 @@ def run(konf: Konf) -> None:
 
 
 def main() -> None:
-    from configuration import Configuration
+    from configuration_di_fede import Configuration
 
     konf = Configuration()
     run(konf)
