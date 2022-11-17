@@ -1,14 +1,12 @@
+import logging
 
 from configuration import Configuration as GeneralConfiguration
 from abstract_browser import AbstractBrowser
 
+
 class Configuration(GeneralConfiguration):
-    """
-    def __init__(self, logging_level=logging.WARNING) -> None:
-        self.setup_logging(logging_level)
-        self._work_dir = "_work_dir"
-        os.makedirs(self._work_dir, exist_ok=True)
-    """
+    def __init__(self):
+        super().__init__(logging_level=logging.DEBUG)
 
     @property
     def browsers(self) -> dict[str, AbstractBrowser]:
