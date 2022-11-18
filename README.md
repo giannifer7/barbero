@@ -1,6 +1,6 @@
 # barbero
 
-gather history files from browsers
+Gather history files from browsers.
 
 
 * GitHub: <https://github.com/giannifer7/barbero>
@@ -78,16 +78,13 @@ The csv fields are:
     * the url
 
 
-* TODO
+### TODO
     * tests
     * documentation
-    * make it more pythonic
     * more platforms
     * more browsers
 
 
-If you have any complaint about this less-than-alpha quality software, then "VENITE A BRUCIARMI LA CASA!"
+### WARNING: the history databases are copied into the work_dir directory, keep it private or clean it after use.
 
-* The project is named after the famous italian historian Alessandro Barbero
-    https://en.wikipedia.org/wiki/Alessandro_Barbero
-
+The project is named after the famous italian historian Alessandro Barbero.

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Print a csv with count and site colums, sorted by decreasing count,

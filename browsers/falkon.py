@@ -14,14 +14,14 @@ class Bfalkon(AbstractBrowser):
     @property
     def history_query(self) -> str:
         return """
-            select
+            SELECT
                 id,
                 datetime(date / 1000 +
                     (strftime('%s', '1970-01-01')), 'unixepoch', 'localtime'),
                 url,
                 title,
                 count
-            from
+            FROM
                 history
             order by
                 date desc

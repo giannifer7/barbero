@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Print a csv from the history files of some browsers for Linux
@@ -14,8 +14,8 @@ the visit count.
 """
 
 import sqlite3
-from typing import Generator, Iterable, NamedTuple
 from datetime import datetime
+from typing import Generator, Iterable, NamedTuple
 from contextlib import contextmanager
 
 from abstract_configuration import AbstractConfiguration as Konf
@@ -64,8 +64,7 @@ def process_history(konf: Konf, browser: AbstractBrowser) -> Iterable[Website]:
     import shutil
 
     try:
-        # browsers lock the database while open
-        # so we work on a copy
+        # browsers lock the database while open, so we work on a copy
         work_db_path = konf.work_path(browser.name + ".db")
         shutil.copy2(browser.db_path, work_db_path)
         with history_cursor(work_db_path) as cursor:
