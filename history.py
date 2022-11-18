@@ -25,21 +25,19 @@ from abstract_browser import AbstractBrowser
 class Website(NamedTuple):
     idx: int  # progressive index
     browser: str  # browser name
-    bid: int # id in the specific browser history
-    date: datetime # last visit datetime
+    bid: int  # id in the specific browser history
+    date: datetime  # last visit datetime
     url: str
     title: str
     # a "count" field leaks from the implementation
     # and upsets the type linters, hence the stupid name
-    xcount: int # visit count
+    xcount: int  # visit count
 
     def csv_row(self) -> str:
         return repr(tuple(self))[1:-1]
 
 
-def process_urls(
-    konf: Konf, browser: AbstractBrowser, cursor: sqlite3.Cursor
-) -> Iterable[Website]:
+def process_urls(browser: AbstractBrowser, cursor: sqlite3.Cursor) -> Iterable[Website]:
     cursor.execute(browser.history_query)
     records = cursor.fetchall()
     for idx, record in enumerate(records):
@@ -68,18 +66,16 @@ def process_history(konf: Konf, browser: AbstractBrowser) -> Iterable[Website]:
         work_db_path = konf.work_path(browser.name + ".db")
         shutil.copy2(browser.db_path, work_db_path)
         with history_cursor(work_db_path) as cursor:
-            for record in process_urls(konf, browser, cursor):
+            for record in process_urls(browser, cursor):
                 yield record
     except FileNotFoundError as exc:
-        konf.info("history for %s not found, skipping.", browser.name)
-        konf.debug("history for %s not found: %s", browser.name, exc)
+        konf.info("history for %s not found: %s", browser.name, exc)
     except sqlite3.Error as exc:
-        konf.info("could not open %s history db, skipping.", browser.name)
-        konf.debug("could not open %s history db: %s", browser.name, exc)
+        konf.info("could not open %s history db: %s", browser.name, exc)
 
 
 def history_all(konf: Konf) -> Iterable[Website]:
-    for name, browser in konf.browsers.items():
+    for browser in konf.browsers.values():
         for record in process_history(konf, browser):
             yield record
 
