@@ -25,11 +25,9 @@ from typing import NamedTuple, TextIO
 from abstract_browser import AbstractBrowser
 from abstract_configuration import AbstractConfiguration as Konf
 
-# log = logging.getLogger(__name__)
-
 
 class Website(NamedTuple):
-    """A record in the resul csv."""
+    """A record in the result csv."""
 
     idx: int  # progressive index
     browser: str  # browser name
@@ -59,7 +57,7 @@ def process_urls(
 
 @contextmanager
 def history_cursor(db_path: str) -> Iterator[sqlite3.Cursor]:
-    """context manager for opening a browser history db."""
+    """Context manager for opening a browser history db."""
 
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
