@@ -1,5 +1,6 @@
-from abstract_browser import AbstractBrowser
 import os
+
+from abstract_browser import AbstractBrowser
 
 
 class Bfalkon(AbstractBrowser):
@@ -9,7 +10,8 @@ class Bfalkon(AbstractBrowser):
 
     @property
     def db_path(self) -> str:
-        return os.path.expanduser("~/.config/falkon/profiles/default/browsedata.db")
+        return os.path.expanduser(
+            "~/.config/falkon/profiles/default/browsedata.db")
 
     @property
     def history_query(self) -> str:
@@ -17,7 +19,8 @@ class Bfalkon(AbstractBrowser):
             SELECT
                 id,
                 datetime(date / 1000 +
-                    (strftime('%s', '1970-01-01')), 'unixepoch', 'localtime'),
+                    (strftime('%s', '1970-01-01')),
+                    'unixepoch', 'localtime'),
                 url,
                 title,
                 count

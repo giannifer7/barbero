@@ -1,6 +1,7 @@
-from abstract_browser import AbstractBrowser
-import os
 import configparser
+import os
+
+from abstract_browser import AbstractBrowser
 
 
 class Bfirefox(AbstractBrowser):
@@ -16,7 +17,8 @@ class Bfirefox(AbstractBrowser):
         config.read(os.path.join(self.firefox_data_base_dir, "profiles.ini"))
         db_relative_dir = ""
         for sect in config.sections():
-            if sect.startswith("Profile") and config[sect]["Name"] == "default-release":
+            if (sect.startswith("Profile") and
+                    config[sect]["Name"] == "default-release"):
                 db_relative_dir = config[sect]["Path"]
                 break
         return os.path.join(self.firefox_data_base_dir, db_relative_dir)
@@ -33,13 +35,15 @@ class Bfirefox(AbstractBrowser):
         return """
             SELECT
                 moz_places.id as id,
-                datetime((visit_date/1000000), 'unixepoch', 'localtime') AS date,
+                datetime((visit_date/1000000),
+                    'unixepoch', 'localtime') AS date,
                 url,
                 title,
                 visit_count AS count
             FROM
                 moz_places
-                INNER JOIN moz_historyvisits ON moz_historyvisits.place_id = moz_places.id
+                INNER JOIN moz_historyvisits
+                    ON moz_historyvisits.place_id = moz_places.id
             ORDER BY
                 visit_date desc
         """

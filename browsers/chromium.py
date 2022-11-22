@@ -1,5 +1,6 @@
-from abstract_browser import AbstractBrowser
 import os
+
+from abstract_browser import AbstractBrowser
 
 
 class Bchromium(AbstractBrowser):
@@ -17,7 +18,8 @@ class Bchromium(AbstractBrowser):
             SELECT
                 id,
                 datetime(last_visit_time / 1000000 +
-                    (strftime('%s', '1601-01-01')), 'unixepoch', 'localtime') AS date,
+                    (strftime('%s', '1601-01-01')),
+                    'unixepoch', 'localtime') AS date,
                 url,
                 title,
                 visit_count AS count
